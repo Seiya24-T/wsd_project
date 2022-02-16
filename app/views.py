@@ -24,17 +24,19 @@ def add(request):
     return render(request, 'app/song_form.html', context)
 
 
-def add_youtube(request):
+def add_youtube(request, id):
     form = AddYoutubeForm(request.POST or None)
 
     if request.method == 'POST' and form.is_valid():
         youtube = form.save(commit = False)
-        youtube.song = request.GET['song_name']
+        youtube.song = Song.objects.get(id=id)
+        youtube.save()
         return redirect('app:index')
 
     context = {
         'form': AddYoutubeForm(),
-        'song_name': request.GET['song_name'],
+        'song': Song.objects.get(id=id),
+#        'song_id': request.GET['song_id'],
     }
     return render(request, 'app/youtube_form.html', context)
 
