@@ -1,0 +1,25 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<h1>ワーシップソング一覧</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>曲名</th>
+            <th>作曲者</th>
+            <th>作詞者</th>
+            <th>Youtube</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for song in song_list %}
+        <tr>
+            <td><a href="{% url 'app:detail' song.pk %}">{{ song.name }}</a></td>
+            <td>{{ song.composer }}</td>
+            <td>{{ song.lyrist }}</td>
+            <td><a href="{% url 'app:add_youtube' %}?song_name={{song.name}}">追加</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

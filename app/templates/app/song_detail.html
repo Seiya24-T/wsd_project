@@ -1,0 +1,14 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<h1 id="song_name">{{song.name}}</h1>
+<h2 id="composer">作曲者:{{song.composer}}</h2>
+<h2 id="lyrist">作詞者:{{song.lyrist}}</h2>
+<p id="lyrics">{{song.lyrics | linebreaksbr}}</p>
+<h2 id="youtube">Youtube</h2>
+<ul id="youtube-links">
+    {% for link in song.youtube_set.all %}
+    <li class="youtube-link">{{ link }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
