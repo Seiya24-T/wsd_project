@@ -7,6 +7,6 @@ app_name = 'app'
 urlpatterns = [
     path('', views.index, name='index'),
     path('add/', views.add, name='add'),
-    path('add_youtube/', views.add_youtube, name='add_youtube'),
-    path('detail/<int:pk>/', views.detail, name='detail'),
+    path('add_youtube/<int:id>', views.add_youtube, name='add_youtube'),
+    path('detail/<int:id>/', views.detail, name='detail'),
 ]

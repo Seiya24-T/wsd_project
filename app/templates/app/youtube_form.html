@@ -1,7 +1,7 @@
 {% extends 'app/base.html' %}
 
 {% block content %}
-{{ song_name }}
+{{ song.name }}
 <form action="" method="POST">
 <p>YoutubeのURLを入力してください</p>{{ form.url }}
 <button type="submit">投稿</button>

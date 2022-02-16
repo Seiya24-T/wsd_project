@@ -17,7 +17,7 @@
             <td><a href="{% url 'app:detail' song.pk %}">{{ song.name }}</a></td>
             <td>{{ song.composer }}</td>
             <td>{{ song.lyrist }}</td>
-            <td><a href="{% url 'app:add_youtube' %}?song_name={{song.name}}">追加</a></td>
+            <td><a href="{% url 'app:add_youtube' song.pk %}">追加</a></td>
         </tr>
         {% endfor %}
     </tbody>
