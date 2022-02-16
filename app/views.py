@@ -41,8 +41,8 @@ def add_youtube(request, id):
     return render(request, 'app/youtube_form.html', context)
 
 
-def detail(request, pk):
-    song = get_object_or_404(Song, pk=pk)
+def detail(request, id):
+    song = get_object_or_404(Song, id=id)
 
     context = {
         'song': song,
