@@ -28,10 +28,11 @@ def add_youtube(request, id):
     form = AddYoutubeForm(request.POST or None)
 
     if request.method == 'POST' and form.is_valid():
-        youtube = form.save(commit = False)
-        youtube.song = Song.objects.get(id=id)
-        youtube.save()
-        return redirect('app:index')
+        if is_youtube_url(request.POST['url']):
+            youtube = form.save(commit = False)
+            youtube.song = Song.objects.get(id=id)
+            youtube.save()
+            return redirect('app:index')
 
     context = {
         'form': AddYoutubeForm(),
@@ -39,6 +40,16 @@ def add_youtube(request, id):
 #        'song_id': request.GET['song_id'],
     }
     return render(request, 'app/youtube_form.html', context)
+
+
+'''引数として受け取ったURLがYoutube動画のものかチェックする関数'''
+def is_youtube_url(url):
+    if url[:23] == 'https://www.youtube.com':
+        return True
+    elif url[:16] == 'https://youtu.be':
+        return True
+    else:
+        return False
 
 
 def detail(request, id):
