@@ -12,10 +12,13 @@ class Song(models.Model):
     lyrist = models.CharField('作詞者', max_length=32)
     lyrics = models.TextField('歌詞')
 
-    def __self__(self):
+    def __str__(self):
         return self.name
 
 
 class Youtube(models.Model):
     url = models.URLField('URL')
     song = models.ForeignKey(Song, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return self.url
