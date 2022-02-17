@@ -1,7 +1,7 @@
 from multiprocessing import context
 from django.shortcuts import redirect, render, get_object_or_404
-from .forms import SongCreateForm, AddYoutubeForm
-from .models import Song, Youtube
+from .forms import SongCreateForm, AddYoutubeForm, AddPersonForm, AddArtistForm
+from .models import Song, Youtube, Person, Artist
 
 
 def index(request):
@@ -21,7 +21,7 @@ def add(request):
     context = {
         'form': SongCreateForm()
     }
-    return render(request, 'app/song_form.html', context)
+    return render(request, 'app/form.html', context)
 
 
 def add_youtube(request, id):
@@ -39,7 +39,7 @@ def add_youtube(request, id):
         'song': Song.objects.get(id=id),
 #        'song_id': request.GET['song_id'],
     }
-    return render(request, 'app/youtube_form.html', context)
+    return render(request, 'app/form.html', context)
 
 
 '''引数として受け取ったURLがYoutube動画のものかチェックする関数'''
@@ -59,3 +59,29 @@ def detail(request, id):
         'song': song,
     }
     return render(request, 'app/song_detail.html', context)
+
+
+def add_person(request):
+    form = AddPersonForm(request.POST or None)
+
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return redirect('app:index')
+
+    context = {
+        'form': AddPersonForm()
+    }
+    return render(request, 'app/form.html', context)
+
+
+def add_artist(request):
+    form = AddArtistForm(request.POST or None)
+
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return redirect('app:index')
+
+    context = {
+        'form': AddArtistForm()
+    }
+    return render(request, 'app/form.html', context)
