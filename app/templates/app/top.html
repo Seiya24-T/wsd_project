@@ -8,6 +8,7 @@
             <th>曲名</th>
             <th>作曲者</th>
             <th>作詞者</th>
+            <th>アーティスト</th>
             <th>Youtube</th>
         </tr>
     </thead>
@@ -17,6 +18,7 @@
             <td><a href="{% url 'app:detail' song.pk %}">{{ song.name }}</a></td>
             <td>{{ song.composer }}</td>
             <td>{{ song.lyrist }}</td>
+            <td>{{ song.artist }}</td>
             <td><a href="{% url 'app:add_youtube' song.pk %}">追加</a></td>
         </tr>
         {% endfor %}
