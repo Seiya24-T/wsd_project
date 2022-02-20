@@ -11,4 +11,5 @@ urlpatterns = [
     path('detail/<int:id>/', views.detail, name='detail'),
     path('add_person/', views.add_person, name='add_person'),
     path('add_artist/', views.add_artist, name=('add_artist')),
+    path('artist_songs/<int:id>/', views.artist_songs, name='artist_songs'),
 ]
