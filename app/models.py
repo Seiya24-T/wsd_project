@@ -29,7 +29,7 @@ class Song(models.Model):
         Person, verbose_name='作詞者', max_length=32, on_delete=models.PROTECT, related_name='lyrist'
     )
     artist = models.ForeignKey(
-        Artist, verbose_name='アーティスト', max_length=32, on_delete=models.PROTECT
+        Artist, verbose_name='アーティスト', max_length=32, on_delete=models.PROTECT, related_name='artist'
     )
 #    lyrics = models.TextField('歌詞')
 

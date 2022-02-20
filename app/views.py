@@ -1,6 +1,7 @@
 from ast import keyword
 from multiprocessing import context
 from pyexpat import model
+from statistics import mode
 from typing_extensions import Self
 from unicodedata import name
 from django.shortcuts import redirect, render, get_object_or_404
@@ -104,3 +105,13 @@ def add_artist(request):
         'form': AddArtistForm()
     }
     return render(request, 'app/form.html', context)
+
+
+def artist_songs(request, id):
+    song = Song.objects.get(id=id)
+    artist = song.artist
+
+    context = {
+        'artist': artist,
+    }
+    return render(request, 'app/artist_songs.html', context)
