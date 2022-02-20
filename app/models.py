@@ -31,7 +31,7 @@ class Song(models.Model):
     artist = models.ForeignKey(
         Artist, verbose_name='アーティスト', max_length=32, on_delete=models.PROTECT
     )
-    lyrics = models.TextField('歌詞')
+#    lyrics = models.TextField('歌詞')
 
     def __str__(self):
         return '{0} {1} {2} {3}'.format(self.name, self.composer, self.lyrist, self.artist)

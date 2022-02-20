@@ -11,6 +11,10 @@
                 <a class="nav-link" href="{% url 'app:add' %}">楽曲追加</a>
                 <a class="nav-link" href="{% url 'app:add_person' %}">作詞作曲者追加</a>
                 <a class="nav-link" href="{% url 'app:add_artist' %}">アーティスト追加</a>
+                <form method="GET" action="{% url 'app:index' %}">
+                    <input class="form-control" type="text" placeholder="Search" name="keyword">
+                    <button type="submit">Search</button>
+                </form>
             </nav>
         </header>
         {% block content %}
