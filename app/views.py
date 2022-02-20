@@ -1,14 +1,33 @@
+from ast import keyword
 from multiprocessing import context
+from pyexpat import model
+from typing_extensions import Self
+from unicodedata import name
 from django.shortcuts import redirect, render, get_object_or_404
 from .forms import SongCreateForm, AddYoutubeForm, AddPersonForm, AddArtistForm
 from .models import Song, Youtube, Person, Artist
+from django.views import generic
 
 
+'''
 def index(request):
     context = {
         'song_list': Song.objects.all(),
     }
     return render(request, 'app/top.html', context)
+'''
+
+
+class IndexView(generic.ListView):
+    model = Song
+
+    def get_queryset(self):
+        queryset = Song.objects.order_by('name')
+        keyword = self.request.GET.get('keyword')
+        if keyword:
+            #icontains:キーワードが含まれている曲名を探す
+            queryset = queryset.filter(name__icontains=keyword)
+        return queryset
 
 
 def add(request):
